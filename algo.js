@@ -35,7 +35,7 @@ const multiplicationTable = n => {
 }
 
 
-const charCount = (str) => {
+const charCount1 = (str) => {
     // make an object to return at end
     let result = {}
     // loop over string, for each character...
@@ -59,7 +59,7 @@ const charCount = (str) => {
 }
 
 // refactored charCount
-const charCount = (str) => {
+const charCount2 = (str) => {
     let obj = {}
     for (let char of str)
     {
@@ -67,17 +67,60 @@ const charCount = (str) => {
         // testing to make sure is a number or letter
         if (/[a-z0-9]/.test(char))
         {
-            if (obj[char] > 0)
-            {
-                obj[char++]
-            } else
-            {
-                obj[char] = 1
-            }
-            return obj
+            obj[char] = ++obj[char] || 1
         }
+        return obj
 
     }
+}
+
+// frequency counter
+
+
+const same = (arr1, arr2) => {
+    if (arr1.length !== arr2.length)
+    {
+        return false
+    }
+
+    for (let i = 0; i < arr1.length; i++)
+    {
+        let correctIndex = arr2.indexOf(arr1[i] ** 2)
+        if (correctIndex === -1)
+        {
+            return false
+        }
+        arr2.splice(correctIndex, 1)
+    }
+    return true
+}
+
+// anagrams
+
+const validAnagram = (first, second) => {
+    if (first.length !== second.length) return false;
+
+    const lookup = {}
+
+    for (let val of first)
+    {
+        let letter = val
+        // if letter exists, increment, otherwise set to 1
+        lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1
+    }
+
+    for (let val of second)
+    {
+        let letter = val
+        if (!lookup[letter])
+        {
+            return false
+        } else
+        {
+            lookup[letter] -= 1
+        }
+    }
+    return true
 }
 
 
