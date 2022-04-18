@@ -109,6 +109,7 @@ const validAnagram = (first, second) => {
         lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1
     }
 
+    // same as a for loop with val being the iterator
     for (let val of second)
     {
         let letter = val
@@ -123,6 +124,70 @@ const validAnagram = (first, second) => {
     return true
 }
 
+//. multiple pointers
+const sumZero = (arr) => {
+    for (let i = 0; i < arr.length; i++)
+    {
+        for (let j = i + 1; j < arr.length; j++)
+        {
+            if (arr[i] + arr[j] === 0)
+            {
+                return [arr[i], arr[j]]
+            }
+        }
+    }
+}
+
+//refactored sumZero
+const sumZero2 = (arr) => {
+    let left = 0
+    let right = arr.length - 1;
+    while (left < right)
+    {
+        let sum = arr[left] + arr[right];
+        if (sum === 0)
+        {
+            return [arr[left], arr[right]]
+        } else if (sum > 0)
+        {
+            right--
+        } else
+        {
+            left++
+        }
+    }
+}
+
+
+const countUniqueValues = (arr) => {
+    let count = 0
+
+    for (let i = 0; i < arr.length; i++)
+    {
+        for (let j = i + 1; arr.length; j++)
+        {
+            if (arr[i] === arr[j])
+            {
+                count++
+            }
+        }
+    }
+
+}
+
+const countUniqueValues2 = (arr) => {
+    let i = 0
+    for (let j = 1; j < arr.length; j++)
+    {
+        if (arr[i] !== arr[j])
+        {
+            i++;
+            arr[i] = arr[j]
+        }
+    }
+    return i + 1
+}
+[1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 6, 7]
 
 
 
