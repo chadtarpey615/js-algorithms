@@ -187,9 +187,86 @@ const countUniqueValues2 = (arr) => {
     }
     return i + 1
 }
-[1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 6, 7]
+//[1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 6, 7]
+
+const maxSubarrySum = (arr, num) => {
+    let maxSum = 0;
+    let tempSum = 0;
+    if (arr.length < num) return null
+    for (let i = 0; i < num; i++)
+    {
+        maxSum += arr[i]
+
+    }
+    tempSum = maxSum
+    for (let i = num; i < arr.length; i++)
+    {
+        tempSum = tempSum - arr[i - num] + arr[i]
+        maxSum = Math.max(maxSum, tempSum)
+    }
+    return maxSum
+}
 
 
+// maxSubarraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3)
 
 
+// divide and conquer
+const search = (arr, val) => {
+    let min = 0
+    let max = arr.length - 1
 
+    while (min <= max)
+    {
+        let middle = Math.floor((min + max) / 2)
+        let currentElement = arr[middle]
+
+        if (arr[middle] < val)
+        {
+            min = middle + 1
+        } else if (arr[middle] > val)
+        {
+            max = middle - 1
+        } else
+        {
+            return middle
+        }
+    }
+    return -1
+}
+
+// recursion
+const countDown = (num) => {
+    if (num <= 0)
+    {
+        console.log("all done")
+        return
+    }
+    console.log(num)
+    num--
+    countDown(num)
+}
+
+
+const sumRange = num => {
+    // base call
+    if (num === 1) return 1;
+    // recursive call
+    return num + sumRange(num - 1)
+    // example of this function
+    // sumRange(3)
+    //   return 3 + sumRange(2)
+    //               return 2 + sumRange(1)
+    //                            return 1    base case
+    //                                         overall return 6
+
+}
+
+const factorial = num => {
+    let total = 1
+    for (let i = num; i > 0; i--)
+    {
+        total *= i
+    }
+    return total
+}
